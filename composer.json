@@ -1,5 +1,5 @@
 {
-    "name": "charonne/ethapi",
+    "name": "charonne/ethapi-php",
     "type": "library",
     "description": "Php client for Ethapi",
     "keywords": ["api", "rest", "web service", "client", "ethereum", "smart contracts"],
