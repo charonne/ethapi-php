@@ -1,0 +1,86 @@
+<?php
+
+namespace Charonne\Ethapi;
+
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+
+ 
+class Transaction
+{
+    protected $url;
+    protected $client;
+    protected $token;
+
+    public function __construct($url, $client, $token)
+    {
+        $this->url = $url;
+        $this->client = $client;
+        $this->token = $token;
+    }
+    
+    /**
+     * Check if string is json
+     */
+    public function isJson($string) {
+        json_decode($string);
+        return (json_last_error() == JSON_ERROR_NONE);
+    }
+    
+    /**
+     * Find all contract
+     */
+    public function find()
+    {
+        $res = $this->client->get($this->url . 'transactions');
+        if ($res->getStatusCode() == 200) {
+            $response = $res->getBody();
+
+            var_dump(json_decode($response));
+        }
+        die('contract \oo/');
+    }
+
+    /**
+     * Find one contract
+     */
+    public function findOne($id)
+    {
+        // Request
+        $res = $this->client->request('GET', $this->url . 'transactions/' . $id, [
+            'headers' => [
+                'x-access-token' => $this->token,
+            ]
+        ]);
+        // Get response
+        if ($res->getStatusCode() == 200) {
+            return json_decode($res->getBody());
+
+        }
+        return null;
+    }
+    
+    /**
+     * Exec a contract
+     */
+    public function exec($contractAddress, $params = null)
+    {
+        // Check params
+        if (!is_null($params) && $this->isJson($params) == false) {
+            return 'JSON_ERROR_NONE';
+        }
+        
+        // Set request
+        $res = $this->client->request('POST', $this->url . 'contracts/exec', [
+            'headers' => [
+                'x-access-token' => $this->token,
+            ],
+            'json' => ['contract_address' => $contractAddress, 'params' => $params]
+        ]);
+        // Get response
+        if ($res->getStatusCode() == 200) {
+            return json_decode($res->getBody());
+        }
+    }
+
+}
