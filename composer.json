@@ -8,11 +8,18 @@
     "authors": [
         {
             "name": "Raphaël Pralat",
-            "email": "raphael.pralat@charonne.com"
+            "email": "raphael.pralat@charonne.com",
+            "homepage": "https://github.com/charonne"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.5",
         "guzzlehttp/guzzle": "^6.2"
-    }
+    },
+    "autoload": {
+        "psr-4": {
+            "Ethapi\\": "src/"
+        }
+    },
 }
