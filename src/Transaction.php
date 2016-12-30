@@ -63,7 +63,7 @@ class Transaction
     /**
      * Exec a contract
      */
-    public function exec($contractAddress, $params = null)
+    public function exec($contractAddress, $method, $params = null)
     {
         $params = json_encode($params);
         
@@ -72,7 +72,7 @@ class Transaction
             'headers' => [
                 'x-access-token' => $this->token,
             ],
-            'json' => ['contract_address' => $contractAddress, 'params' => $params]
+            'json' => ['contract_address' => $contractAddress, 'method' => $method, 'params' => $params]
         ]);
         // Get response
         if ($res->getStatusCode() == 200) {

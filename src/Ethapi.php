@@ -14,8 +14,8 @@ class Ethapi
     public $url;
     protected $client;
     protected $token;
-    protected $contract;
-    protected $transaction;
+    public $contract;
+    public $transaction;
 
     public function __construct()
     {
@@ -38,6 +38,10 @@ class Ethapi
                 $response = $res->getBody();
                 $auth = json_decode($response);
                 $this->token = $auth->token;
+                
+                $this->setContract();
+                $this->setTransaction();
+                
                 return true;
             }
         }
@@ -66,24 +70,24 @@ class Ethapi
     /**
      * Get contract
      */
-    public function contract()
+    public function setContract()
     {
         if (is_null($this->contract)) {
             $this->contract = new Contract($this->url, $this->client, $this->token);
         }
-        return $this->contract;
+        return $this;
     }
 
 
     /**
      * Get transaction
      */
-    public function transaction()
+    public function setTransaction()
     {
         if (is_null($this->transaction)) {
             $this->transaction = new Transaction($this->url, $this->client, $this->token);
         }
-        return $this->transaction;
+        return $this;
     }
     
 }

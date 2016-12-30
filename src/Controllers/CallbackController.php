@@ -2,8 +2,9 @@
 
 namespace Charonne\Ethapi\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Http\Request;
+
 
  
 class CallbackController extends Controller

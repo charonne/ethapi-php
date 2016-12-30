@@ -20,7 +20,11 @@ class Callback
         $confirmed = $transaction->confirmed;
         
         // Do something...
-        $message = date("Y-m-d H:i:s") . " transaction actions for transactionId: $transactionId, transactionHash: $transactionHash, contractAddress: $contractAddress, confirmed: $confirmed...\n";
+        $message = date("Y-m-d H:i:s") . ";" . 
+            "actions for transactionId: $transactionId" . ";" . 
+            "transactionHash: $transactionHash" . ";" . 
+            "contractAddress: $contractAddress" . ";" . 
+            "confirmed: $confirmed..." . "\n";
         $tempFile = sys_get_temp_dir() . '/ethapi.debug';
         file_put_contents($tempFile, $message, FILE_APPEND | LOCK_EX);
         // die($message);
@@ -40,7 +44,10 @@ class Callback
         $confirmed = $transaction->confirmed;
         
         // Do something...
-        $message = date("Y-m-d H:i:s") . " transaction actions for transactionId: $transactionId, transactionHash: $transactionHash, confirmed: $confirmed...";
+        $message = date("Y-m-d H:i:s") . ";" . 
+            "actions for transactionId: $transactionId" . ";" .
+            "transactionHash: $transactionHash" . ";" .
+            "confirmed: $confirmed..." . "\n";
         $tempFile = sys_get_temp_dir() . '/ethapi.debug';
         file_put_contents($tempFile, $message, FILE_APPEND | LOCK_EX);
         // die($message);
