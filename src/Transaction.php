@@ -65,10 +65,7 @@ class Transaction
      */
     public function exec($contractAddress, $params = null)
     {
-        // Check params
-        if (!is_null($params) && $this->isJson($params) == false) {
-            return 'JSON_ERROR_NONE';
-        }
+        $params = json_encode($params);
         
         // Set request
         $res = $this->client->request('POST', $this->url . 'contracts/exec', [

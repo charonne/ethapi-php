@@ -1,4 +1,4 @@
 <?php
 
 Route::post('ethapi/callback', 
-  'charonne\ethapi\CallbackController@callback');
+  'charonne\ethapi\Controllers\CallbackController@callback');

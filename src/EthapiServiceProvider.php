@@ -13,7 +13,9 @@ class EthapiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->publishes([
+            __DIR__.'/config/ethapi.php' => config_path('ethapi.php'),
+        ]);
     }
 
     /**
@@ -25,10 +27,6 @@ class EthapiServiceProvider extends ServiceProvider
     {
         include __DIR__.'/routes/api.php';
         $this->app->make('Charonne\Ethapi\Controllers\CallbackController');
-
-        //
-        // $this->registerEthapi();
-        // $this->app->alias('ethapi', 'Charonne\Ethapi\Ethapi');
     }
 
 

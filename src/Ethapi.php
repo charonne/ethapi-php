@@ -11,9 +11,7 @@ use Charonne\Ethapi\Transaction;
 
 class Ethapi
 {
-    
-    
-    public $url = 'http://nodejs.charonne.local:3000/';
+    public $url;
     protected $client;
     protected $token;
     protected $contract;
@@ -21,6 +19,7 @@ class Ethapi
 
     public function __construct()
     {
+        $this->url = config('ethapi.server_url');
         $this->client = new Client();
     }
     

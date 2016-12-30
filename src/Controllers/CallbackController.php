@@ -5,8 +5,6 @@ namespace Charonne\Ethapi\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-
-use Charonne\Ethapi\Callback;
  
 class CallbackController extends Controller
 {
@@ -47,7 +45,9 @@ class CallbackController extends Controller
             'confirmed' => $inputs['confirmed'],
         ];
         
-        Callback::deploy($transaction);
+        // Callback method
+        $callbackMethod = config("ethapi.deploy_callback_method");
+        call_user_func($callbackMethod, $transaction);
     }
     
     /**
@@ -61,7 +61,9 @@ class CallbackController extends Controller
             'confirmed' => $inputs['confirmed'],
         ];
         
-        Callback::exec($transaction);
+        // Callback method
+        $callbackMethod = config("ethapi.exec_callback_method");
+        call_user_func($callbackMethod, $transaction);
     }
     
 }
