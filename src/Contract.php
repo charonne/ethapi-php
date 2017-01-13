@@ -85,8 +85,6 @@ class Contract
     */
     public function deploy($contractId, $params = null)
     {
-        $params = json_encode($params);
-        
         // Check contract
         $contract = $this->findOne($contractId);
         if (!$contract) {

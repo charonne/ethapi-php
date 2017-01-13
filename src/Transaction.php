@@ -65,8 +65,6 @@ class Transaction
      */
     public function exec($contractAddress, $method, $params = null)
     {
-        $params = json_encode($params);
-        
         // Set request
         $res = $this->client->request('POST', $this->url . 'contracts/exec', [
             'headers' => [
