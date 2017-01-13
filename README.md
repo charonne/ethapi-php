@@ -16,5 +16,5 @@ This install process assumes you already have [your laravel project installed](h
 
 ## Developer
 
-Raphaël Pralat [raphael.pralat@gmail.com](mailto:raphael.pralat@gmail.com)
+Raphael Pralat [raphael.pralat@charonne.com](mailto:raphael.pralat@charonne.com)
 
