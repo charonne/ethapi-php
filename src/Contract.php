@@ -87,7 +87,9 @@ class Contract
         // Check contract
         $contract = $this->findOne($contractId);
         if (!$contract) {
-            return 'CONTRACT_ERROR_NONE';
+            $response['status'] = 'error';
+            $response['message'] = 'CONTRACT_ERROR_NONE';
+            return json_encode($response);
         }
 
         // Set request
