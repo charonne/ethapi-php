@@ -12,9 +12,8 @@ class Transaction
     protected $client;
     protected $token;
 
-    public function __construct($url, $client, $token)
+    public function __construct($client, $token)
     {
-        $this->url = $url;
         $this->client = $client;
         $this->token = $token;
     }
@@ -32,7 +31,7 @@ class Transaction
      */
     public function find()
     {
-        $res = $this->client->get($this->url . 'transactions');
+        $res = $this->client->get('transactions');
         if ($res->getStatusCode() == 200) {
             $response = $res->getBody();
 
@@ -47,7 +46,7 @@ class Transaction
     public function findOne($id)
     {
         // Request
-        $res = $this->client->request('GET', $this->url . 'transactions/' . $id, [
+        $res = $this->client->request('GET', 'transactions/' . $id, [
             'headers' => [
                 'x-access-token' => $this->token,
             ]
@@ -66,7 +65,7 @@ class Transaction
     public function exec($contractAddress, $method, $params = null)
     {
         // Set request
-        $res = $this->client->request('POST', $this->url . 'contracts/exec', [
+        $res = $this->client->request('POST', 'contracts/exec', [
             'headers' => [
                 'x-access-token' => $this->token,
             ],

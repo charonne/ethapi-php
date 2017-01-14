@@ -20,10 +20,11 @@ class Ethapi
     public function __construct()
     {
         // Set url
-        $this->url = config('ethapi.server_url') . "/";
-        $this->url = preg_replace('#/+$#','/', $this->url);
+        $this->url = config('ethapi.server_url');
+        // $this->url = config('ethapi.server_url') . "/";
+        // $this->url = preg_replace('#/+$#','/', $this->url);
         // Set client
-        $this->client = new Client();
+        $this->client = new Client(['base_uri' => $this->url]);
     }
     
     /**
@@ -33,7 +34,7 @@ class Ethapi
     {
         if (is_null($this->token)) {
             // Send request
-            $res = $this->client->request('POST', $this->url . 'accounts/login',
+            $res = $this->client->request('POST', 'accounts/login',
                 ['json' => ['username' => $login, 'password' => $password]]
             );
             // Get token
@@ -57,7 +58,7 @@ class Ethapi
     public function setCallbackUrl($callbackUrl)
     {
         // Request
-        $res = $this->client->request('POST', $this->url . 'accounts/update', [
+        $res = $this->client->request('POST', 'accounts/update', [
             'headers' => [
                 'x-access-token' => $this->token,
             ],
@@ -76,7 +77,7 @@ class Ethapi
     public function setContract()
     {
         if (is_null($this->contract)) {
-            $this->contract = new Contract($this->url, $this->client, $this->token);
+            $this->contract = new Contract($this->client, $this->token);
         }
         return $this;
     }
@@ -88,7 +89,7 @@ class Ethapi
     public function setTransaction()
     {
         if (is_null($this->transaction)) {
-            $this->transaction = new Transaction($this->url, $this->client, $this->token);
+            $this->transaction = new Transaction($this->client, $this->token);
         }
         return $this;
     }

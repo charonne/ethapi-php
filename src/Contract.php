@@ -12,9 +12,8 @@ class Contract
     protected $client;
     protected $token;
 
-    public function __construct($url, $client, $token)
+    public function __construct($client, $token)
     {
-        $this->url = $url;
         $this->client = $client;
         $this->token = $token;
     }
@@ -36,7 +35,7 @@ class Contract
         $sol = preg_replace('/[\n\r]+/', '\n\n', $sol);
         
         // Set request
-        $res = $this->client->request('POST', $this->url . 'contracts/create', [
+        $res = $this->client->request('POST', 'contracts/create', [
             'headers' => [
                 'x-access-token' => $this->token,
             ],
@@ -54,7 +53,7 @@ class Contract
     public function find()
     {
         // Set request
-        $res = $this->client->get($this->url . 'contracts');
+        $res = $this->client->get(    'contracts');
         // Get response
         if ($res->getStatusCode() == 200) {
             return json_decode($res->getBody());
@@ -68,7 +67,7 @@ class Contract
     public function findOne($id)
     {
         // Set request
-        $res = $this->client->request('GET', $this->url . 'contracts/' . $id, [
+        $res = $this->client->request('GET', 'contracts/' . $id, [
             'headers' => [
                 'x-access-token' => $this->token,
             ]
@@ -92,7 +91,7 @@ class Contract
         }
 
         // Set request
-        $res = $this->client->request('POST', $this->url . 'contracts/deploy', [
+        $res = $this->client->request('POST', 'contracts/deploy', [
             'headers' => [
                 'x-access-token' => $this->token,
             ],
