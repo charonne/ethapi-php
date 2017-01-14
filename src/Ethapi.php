@@ -19,7 +19,10 @@ class Ethapi
 
     public function __construct()
     {
-        $this->url = config('ethapi.server_url');
+        // Set url
+        $this->url = config('ethapi.server_url') . "/";
+        $this->url = preg_replace('#/+#','/', $this->url);
+        // Set client
         $this->client = new Client();
     }
     
