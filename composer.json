@@ -1,6 +1,5 @@
 {
     "name": "charonne/ethapi-php",
-    "version": "0.4",
     "type": "library",
     "description": "Php client for Ethapi",
     "keywords": ["api", "rest", "web service", "client", "ethereum", "smart contracts"],
@@ -21,6 +20,11 @@
     "autoload": {
         "psr-4": {
             "Charonne\\Ethapi\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.4"
         }
     }
 }
