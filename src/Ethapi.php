@@ -21,7 +21,7 @@ class Ethapi
     {
         // Set url
         $this->url = config('ethapi.server_url') . "/";
-        $this->url = preg_replace('#/+#','/', $this->url);
+        $this->url = preg_replace('#/+$#','/', $this->url);
         // Set client
         $this->client = new Client();
     }
