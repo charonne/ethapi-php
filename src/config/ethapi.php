@@ -11,8 +11,19 @@ return [
     |
     */
 
-    'api_key' => '1234-5678-9101',
-    'password' => 'demo',
+    'api_key' =>  env('ETHAPI_API_KEY', '1234-5678-9101'),
+    'password' =>  env('ETHAPI_API_PASSWORD', 'demo'),
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Callback url
+    |--------------------------------------------------------------------------
+    |
+    | Callback url to get ethapi response
+    |
+    */
+    
+    'callback_url' => env('ETHAPI_CALLBACK_URL', '/ethapi/callback'),
 
     /*
     |--------------------------------------------------------------------------
@@ -23,7 +34,7 @@ return [
     |
     */
 
-    'server_url' => 'https://ethapi.democrypt.com/',
+    'server_url' => env('ETHAPI_SERVER_URL', 'https://ethapi.democrypt.com/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -34,7 +45,7 @@ return [
     |
     */
 
-    'deploy_callback_method' => '\Charonne\Ethapi\Callback::deploy',
+    'deploy_callback_method' => '\App\Factory\Vote\Callback::deploy',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,6 +56,6 @@ return [
     |
     */
 
-    'exec_callback_method' => 'Charonne\Ethapi\Callback::exec',
+    'exec_callback_method' => '\App\Factory\Vote\Callback::exec',
 
 ];
