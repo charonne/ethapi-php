@@ -89,7 +89,8 @@ class Contract
         if (!$contract) {
             $response['status'] = 'error';
             $response['message'] = 'CONTRACT_ERROR_NONE';
-            return json_encode($response);
+            // Response
+            return (object) $response;
         }
 
         // Set request
@@ -101,6 +102,7 @@ class Contract
         ]);
         // Get response
         if ($res->getStatusCode() == 200) {
+            // Response
             return json_decode($res->getBody());
         }
     }
