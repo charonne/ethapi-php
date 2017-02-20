@@ -39,16 +39,20 @@ class CallbackController extends Controller
      */
     private function deploy($inputs)
     {
-        $transaction = (object) [
-            'tx_id' => $inputs['tx_id'],
-            'tx_hash' => $inputs['tx_hash'],
-            'contract_address' => $inputs['contract_address'],
-            'confirmed' => $inputs['confirmed'],
-        ];
-        
-        // Callback method
-        $callbackMethod = config("ethapi.deploy_callback_method");
-        call_user_func($callbackMethod, $transaction);
+        try {
+            $transaction = (object) [
+                'tx_id' => $inputs['tx_id'],
+                'tx_hash' => $inputs['tx_hash'],
+                'contract_address' => $inputs['contract_address'],
+                'confirmed' => $inputs['confirmed'],
+            ];
+            
+            // Callback method
+            $callbackMethod = config("ethapi.deploy_callback_method");
+            call_user_func($callbackMethod, $transaction);
+        } catch (Exception $e) {
+            echo 'Exception: ',  $e->getMessage(), "\n";
+        }
     }
     
     /**
@@ -56,15 +60,20 @@ class CallbackController extends Controller
      */
     private function exec($inputs)
     {
-        $transaction = (object) [
-            'tx_id' => $inputs['tx_id'],
-            'tx_hash' => $inputs['tx_hash'],
-            'confirmed' => $inputs['confirmed'],
-        ];
-        
-        // Callback method
-        $callbackMethod = config("ethapi.exec_callback_method");
-        call_user_func($callbackMethod, $transaction);
+        try {
+            $transaction = (object) [
+                'tx_id' => $inputs['tx_id'],
+                'tx_hash' => $inputs['tx_hash'],
+                'confirmed' => $inputs['confirmed'],
+            ];
+            
+            // Callback method
+            $callbackMethod = config("ethapi.exec_callback_method");
+            call_user_func($callbackMethod, $transaction);
+
+        } catch (Exception $e) {
+            echo 'Exception: ',  $e->getMessage(), "\n";
+        }
     }
     
 }
